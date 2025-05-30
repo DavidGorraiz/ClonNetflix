@@ -1,14 +1,17 @@
-package com.davidGorraiz.CRUD;
+package com.davidGorraiz.service;
 
 import com.davidGorraiz.model.Genre;
+import com.davidGorraiz.repository.GenreRepository;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class GenreCRUD  extends CRUD{
+public class GenreService implements GenreRepository {
 
-    public GenreCRUD(EntityManager em) {
-        super(em);
+    private EntityManager em;
+
+    public GenreService(EntityManager em) {
+        this.em = em;
     }
 
     @Override
@@ -24,16 +27,16 @@ public class GenreCRUD  extends CRUD{
     }
 
     @Override
-    public void save(Object genre) {
+    public void save(Genre genre) {
         em.persist(genre);
         em.getTransaction().commit();
     }
 
     @Override
-    public void update(int id, Object newGenre) {
+    public void update(int id, Genre newGenre) {
         Genre genre = em.find(Genre.class, id);
         if (genre != null) {
-            genre.setNombre(((Genre) newGenre).getNombre());
+            genre.setNombre(newGenre.getNombre());
             em.merge(genre);
             em.getTransaction().commit();
         } else {
