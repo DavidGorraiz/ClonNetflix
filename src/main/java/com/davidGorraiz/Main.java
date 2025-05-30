@@ -1,6 +1,7 @@
 package com.davidGorraiz;
 
 import com.davidGorraiz.service.GenreService;
+import com.davidGorraiz.service.UserService;
 import com.davidGorraiz.util.UtilEntity;
 import jakarta.persistence.EntityManager;
 
@@ -9,28 +10,10 @@ public class Main {
         EntityManager em = UtilEntity.getEntityManager();
         em.getTransaction().begin();
         GenreService genreService = new GenreService(em);
+        UserService userService = new UserService(em);
 
-        System.out.println("---- Listar Generos ----");
-        genreService.findAll();
-
-        System.out.println("---- Buscar genero por id ----");
-        genreService.findById(1);
-
-//        System.out.println("---- Insertar genero ----");
-//        Genre genre = new Genre();
-//        genre.setNombre("Humor");
-//        genreCRUD.save(genre);
-
-//        System.out.println("---- Actualizar Genero ----");
-//        Genre genre =  new Genre();
-//        genre.setNombre("Comedia");
-//        genreCRUD.update(6,genre);
-
-//        System.out.println("---- Eliminar Genero por id ----");
-//        genreCRUD.delete(6);
-
-        System.out.println("---- Listar Generos ----");
-        genreService.findAll();
+        System.out.println("---- Listar usuarios ----");
+        userService.findAll();
 
         em.close();
     }
