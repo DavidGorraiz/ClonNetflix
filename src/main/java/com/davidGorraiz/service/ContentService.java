@@ -11,19 +11,16 @@ public class ContentService  implements ContentRepository {
 
     private EntityManager em;
 
-    public ContentService() {
-        this.em = UtilEntity.getEntityManager();
+    public ContentService(EntityManager em) {
+        this.em = em;
     }
 
     @Override
     public void findAll() {
-        em.getTransaction().begin();
         List<Content> contents = em.createQuery("select c from Content c", Content.class).getResultList();
         System.out.println("---- Listar contenido ----");
         contents.forEach(System.out::println);
         System.out.println();
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.davidGorraiz.service;
 
 import com.davidGorraiz.model.User.User;
 import com.davidGorraiz.repository.UserRepository;
-import com.davidGorraiz.util.UtilEntity;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -11,23 +10,25 @@ public class UserService implements UserRepository {
 
     private EntityManager em;
 
-    public UserService() {
-        this.em = UtilEntity.getEntityManager();
+    public UserService(EntityManager em) {
+        this.em = em;
     }
 
     @Override
     public void findAll() {
-        em.getTransaction().begin();
         List<User> users = em.createQuery("select u from User u", User.class).getResultList();
         System.out.println("---- Listar usuarios ----");
         users.forEach(System.out::println);
         System.out.println();
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
     public void findById(int id) {
+        User user = em.find(User.class, id);
+        System.out.println("---- Usuario encontrado ----");
+        System.out.println(user);
+        System.out.println();
+
 
     }
 
