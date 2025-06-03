@@ -1,5 +1,5 @@
 package com.davidGorraiz.model.Content;
 
-public enum Tipo {
+public enum TipoContent {
     PELICULA,SERIE
 }

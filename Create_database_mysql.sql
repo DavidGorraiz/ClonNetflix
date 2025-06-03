@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS  profile (
 -- Tabla: SUBSCRIPTION
 CREATE TABLE IF NOT EXISTS  subscription (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo ENUM('BÁSICO', 'ESTÁNDAR', 'PREMIUM') NOT NULL,
+    tipoContent ENUM('BÁSICO', 'ESTÁNDAR', 'PREMIUM') NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
     duracion_meses INT NOT NULL,
     fecha_inicio DATE NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS  content (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     descripcion TEXT,
-    tipo ENUM('PELICULA', 'SERIE') NOT NULL,
+    tipoContent ENUM('PELICULA', 'SERIE') NOT NULL,
     fecha_lanzamiento DATE,
     duracion INT, -- En minutos
     clasificacion VARCHAR(20)
@@ -115,12 +115,12 @@ INSERT INTO profile (nombre, idioma, user_id) VALUES
 ('Jane - Perfil 1', 'Francés', 3);
 
 -- Insertar subscription
-INSERT INTO subscription (tipo, precio, duracion_meses, fecha_inicio, fecha_fin, activo, user_id) VALUES
+INSERT INTO subscription (tipoContent, precio, duracion_meses, fecha_inicio, fecha_fin, activo, user_id) VALUES
 ('PREMIUM', 15.99, 12, '2024-02-10', '2025-02-10', TRUE, 2),
 ('ESTÁNDAR', 12.99, 6, '2024-02-15', '2024-08-15', TRUE, 3);
 
 -- Insertar contenido
-INSERT INTO content (titulo, descripcion, tipo, fecha_lanzamiento, duracion, clasificacion) VALUES
+INSERT INTO content (titulo, descripcion, tipoContent, fecha_lanzamiento, duracion, clasificacion) VALUES
 ('The Matrix', 'Película de ciencia ficción', 'PELICULA', '1999-03-31', 136, '+16'),
 ('Stranger Things', 'Serie de misterio y ciencia ficción', 'SERIE', '2016-07-15', NULL, '+13');
 

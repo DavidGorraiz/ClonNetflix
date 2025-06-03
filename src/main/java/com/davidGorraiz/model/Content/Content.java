@@ -17,7 +17,7 @@ public class Content {
     private String descripcion;
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
-    private Tipo tipo;
+    private TipoContent tipoContent;
     @Column(name = "fecha_lanzamiento")
     private Date fechaLanzamiento;
     @Column(name = "duracion")
@@ -28,10 +28,10 @@ public class Content {
     public Content() {
     }
 
-    public Content(String titulo, String descripcion, Tipo tipo, Date fechaLanzamiento, int duracion, String clasificacion) {
+    public Content(String titulo, String descripcion, TipoContent tipoContent, Date fechaLanzamiento, int duracion, String clasificacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.tipo = tipo;
+        this.tipoContent = tipoContent;
         this.fechaLanzamiento = fechaLanzamiento;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
@@ -57,12 +57,12 @@ public class Content {
         this.descripcion = descripcion;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public TipoContent getTipo() {
+        return tipoContent;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setTipo(TipoContent tipoContent) {
+        this.tipoContent = tipoContent;
     }
 
     public Date getFechaLanzamiento() {
@@ -95,7 +95,7 @@ public class Content {
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", tipo=" + tipo +
+                ", tipo=" + tipoContent +
                 ", fechaLanzamiento=" + fechaLanzamiento +
                 ", duracion=" + duracion +
                 ", clasificacion='" + clasificacion + '\'' +

@@ -1,8 +1,10 @@
 package com.davidGorraiz.model.User;
 
+import com.davidGorraiz.model.Suscription.Suscription;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -22,6 +24,9 @@ public class User {
     @Column(name = "rol")
     private Rol rol;
 
+    @OneToMany(mappedBy = "user")
+    private List<Suscription> suscriptions;
+
     public User() {
     }
 
@@ -31,6 +36,18 @@ public class User {
         this.nombreCompleto = nombreCompleto;
         this.fechaRegistro = fechaRegistro;
         this.rol = rol;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Suscription> getSuscriptions() {
+        return suscriptions;
+    }
+
+    public void setSuscriptions(List<Suscription> suscriptions) {
+        this.suscriptions = suscriptions;
     }
 
     public int getId() {
