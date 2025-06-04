@@ -25,12 +25,17 @@ public class ContentService  implements ContentRepository {
 
     @Override
     public void findById(int id) {
-
+        Content content = em.find(Content.class, id);
+        System.out.println("---- Contenido encontrado ----");
+        System.out.println(content);
+        System.out.println();
     }
 
     @Override
     public void save(Content content) {
-
+        System.out.println("---- Insertar contenido ----");
+        em.persist(content);
+        System.out.println();
     }
 
     @Override

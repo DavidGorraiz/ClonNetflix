@@ -3,7 +3,7 @@ package com.davidGorraiz.model.User;
 import com.davidGorraiz.model.Suscription.Suscription;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -11,6 +11,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @Column(name = "email")
     private String email;
@@ -19,7 +20,7 @@ public class User {
     @Column(name = "nombre_completo")
     private String nombreCompleto;
     @Column(name = "fecha_registro")
-    private Date fechaRegistro;
+    private LocalDate fechaRegistro;
     @Enumerated(EnumType.STRING)
     @Column(name = "rol")
     private Rol rol;
@@ -30,7 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, String nombreCompleto, Date fechaRegistro, Rol rol) {
+    public User(String email, String password, String nombreCompleto, LocalDate fechaRegistro, Rol rol) {
         this.email = email;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
@@ -78,11 +79,11 @@ public class User {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public Date getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

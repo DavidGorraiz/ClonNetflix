@@ -2,7 +2,7 @@ package com.davidGorraiz.model.Content;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "content")
@@ -19,7 +19,7 @@ public class Content {
     @Column(name = "tipo")
     private TipoContent tipoContent;
     @Column(name = "fecha_lanzamiento")
-    private Date fechaLanzamiento;
+    private LocalDate fechaLanzamiento;
     @Column(name = "duracion")
     private Integer duracion;
     @Column(name = "clasificacion")
@@ -28,7 +28,7 @@ public class Content {
     public Content() {
     }
 
-    public Content(String titulo, String descripcion, TipoContent tipoContent, Date fechaLanzamiento, int duracion, String clasificacion) {
+    public Content(String titulo, String descripcion, TipoContent tipoContent, LocalDate fechaLanzamiento, int duracion, String clasificacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.tipoContent = tipoContent;
@@ -65,11 +65,11 @@ public class Content {
         this.tipoContent = tipoContent;
     }
 
-    public Date getFechaLanzamiento() {
+    public LocalDate getFechaLanzamiento() {
         return fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(Date fechaLanzamiento) {
+    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 

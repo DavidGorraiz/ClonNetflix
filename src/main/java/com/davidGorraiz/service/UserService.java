@@ -23,18 +23,19 @@ public class UserService implements UserRepository {
     }
 
     @Override
-    public void findById(int id) {
+    public User findById(int id) {
         User user = em.find(User.class, id);
         System.out.println("---- Usuario encontrado ----");
         System.out.println(user);
         System.out.println();
-
-
+        return user;
     }
 
     @Override
     public void save(User user) {
-
+        System.out.println("---- Insertar usuario ----");
+        em.persist(user);
+        System.out.println();
     }
 
     @Override

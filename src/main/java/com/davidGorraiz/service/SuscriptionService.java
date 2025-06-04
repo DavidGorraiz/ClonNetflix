@@ -27,12 +27,18 @@ public class SuscriptionService  implements SuscriptionRepository {
 
     @Override
     public void findById(int id) {
-
+        Suscription suscription = em.find(Suscription.class, id);
+        System.out.println("---- Suscripcion encontrada ----");
+        System.out.println(suscription);
+        System.out.println();
     }
 
     @Override
     public void save(Suscription suscription, User user) {
-
+        suscription.setUser(user);
+        System.out.println("---- Insertar suscripcion ----");
+        em.persist(suscription);
+        System.out.println();
     }
 
     @Override

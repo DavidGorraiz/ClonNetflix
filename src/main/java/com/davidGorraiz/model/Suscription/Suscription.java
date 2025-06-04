@@ -3,7 +3,7 @@ package com.davidGorraiz.model.Suscription;
 import com.davidGorraiz.model.User.User;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "subscription")
@@ -20,9 +20,9 @@ public class Suscription {
     @Column(name = "duracion_meses")
     private int duracionMeses;
     @Column(name = "fecha_inicio")
-    private Date fehcaInicio;
+    private LocalDate fehcaInicio;
     @Column(name = "fecha_fin")
-    private Date fehcaFin;
+    private LocalDate fehcaFin;
     @Column(name = "activo")
     private short activo;
     @Column(name = "user_id", insertable = false, updatable = false)
@@ -35,7 +35,7 @@ public class Suscription {
     public Suscription() {
     }
 
-    public Suscription(TipoSuscription tipo, double precio, int duracionMeses, Date fehcaInicio, Date fehcaFin, short activo) {
+    public Suscription(TipoSuscription tipo, double precio, int duracionMeses, LocalDate fehcaInicio, LocalDate fehcaFin, short activo) {
         this.tipo = tipo;
         this.precio = precio;
         this.duracionMeses = duracionMeses;
@@ -92,19 +92,19 @@ public class Suscription {
         this.duracionMeses = duracionMeses;
     }
 
-    public Date getFehcaInicio() {
+    public LocalDate getFehcaInicio() {
         return fehcaInicio;
     }
 
-    public void setFehcaInicio(Date fehcaInicio) {
+    public void setFehcaInicio(LocalDate fehcaInicio) {
         this.fehcaInicio = fehcaInicio;
     }
 
-    public Date getFehcaFin() {
+    public LocalDate getFehcaFin() {
         return fehcaFin;
     }
 
-    public void setFehcaFin(Date fehcaFin) {
+    public void setFehcaFin(LocalDate fehcaFin) {
         this.fehcaFin = fehcaFin;
     }
 

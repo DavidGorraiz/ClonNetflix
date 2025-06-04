@@ -33,8 +33,7 @@ public class GenreService implements GenreRepository {
 
     @Override
     public void save(Genre genre) {
-        em.getTransaction().begin();
-        System.out.println("---- Actualizar genero ----");
+        System.out.println("---- Insertar genero ----");
         em.persist(genre);
         System.out.println();
     }
