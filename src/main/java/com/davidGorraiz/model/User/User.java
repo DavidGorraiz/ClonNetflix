@@ -25,7 +25,7 @@ public class User {
     @Column(name = "rol")
     private Rol rol;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Suscription> suscriptions;
 
     public User() {

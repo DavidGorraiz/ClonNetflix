@@ -39,8 +39,21 @@ public class ContentService  implements ContentRepository {
     }
 
     @Override
-    public void update(Content content, int id) {
-
+    public void update(Content newContent, int id) {
+        Content content = em.find(Content.class, id);
+        if (content != null) {
+            content.setTitulo(newContent.getTitulo());
+            content.setDescripcion(newContent.getDescripcion());
+            content.setTipo(newContent.getTipo());
+            content.setFechaLanzamiento(newContent.getFechaLanzamiento());
+            content.setDuracion(newContent.getDuracion());
+            content.setClasificacion(newContent.getClasificacion());
+            System.out.println("---- Actualizar contenido ----");
+            em.merge(content);
+            System.out.println();
+        }else {
+            System.out.println("El contenido que quiere actualizar no existe");
+        }
     }
 
     @Override

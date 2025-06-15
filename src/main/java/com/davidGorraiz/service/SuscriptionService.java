@@ -42,8 +42,22 @@ public class SuscriptionService  implements SuscriptionRepository {
     }
 
     @Override
-    public void update(int id, Suscription suscription) {
-
+    public void update(int id, Suscription newSuscription) {
+        Suscription suscription = em.find(Suscription.class, id);
+        if (suscription != null) {
+            suscription.setTipo(newSuscription.getTipo());
+            suscription.setPrecio(newSuscription.getPrecio());
+            suscription.setDuracionMeses(newSuscription.getDuracionMeses());
+            suscription.setFehcaInicio(newSuscription.getFehcaInicio());
+            suscription.setFehcaFin(newSuscription.getFehcaFin());
+            suscription.setActivo(newSuscription.getActivo());
+            suscription.setUser(newSuscription.getUser());
+            System.out.println("---- Actualizar suscripcion ----");
+            em.merge(suscription);
+            System.out.println();
+        }else {
+            System.out.println("La suscripcion que se quiere actualizar no existe");
+        }
     }
 
     @Override

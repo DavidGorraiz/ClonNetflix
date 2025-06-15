@@ -56,6 +56,7 @@ public class GenreService implements GenreRepository {
     public void delete(int id) {
         Genre genre = em.find(Genre.class, id);
         if (genre != null) {
+            System.out.println("---- Eliminar genre ----");
             em.remove(genre);
         } else {
             System.out.println("El genero que se quiere eliminar no existe");

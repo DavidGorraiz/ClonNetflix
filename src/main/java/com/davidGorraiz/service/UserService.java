@@ -39,12 +39,31 @@ public class UserService implements UserRepository {
     }
 
     @Override
-    public void update(int id, User user) {
-
+    public void update(int id, User newUser) {
+        User user = em.find(User.class, id);
+        if (user != null) {
+            user.setEmail(newUser.getEmail());
+            user.setPassword(newUser.getPassword());
+            user.setNombreCompleto(newUser.getNombreCompleto());
+            user.setFechaRegistro(newUser.getFechaRegistro());
+            user.setRol(newUser.getRol());
+            System.out.println("---- Actualizar usuario ----");
+            em.merge(user);
+            System.out.println();
+        } else {
+            System.out.println("El usuario que se quiere actualizar no existe-");
+            System.out.println();
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        User user = em.find(User.class, id);
+        if (user != null) {
+            System.out.println("---- Eliminar usuario ----");
+            em.remove(user);
+        }else {
+            System.out.println("El usuario que quiere eliminar no existe-");
+        }
     }
 }
