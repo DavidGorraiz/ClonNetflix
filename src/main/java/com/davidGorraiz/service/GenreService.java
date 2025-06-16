@@ -2,7 +2,6 @@ package com.davidGorraiz.service;
 
 import com.davidGorraiz.model.Genre;
 import com.davidGorraiz.repository.GenreRepository;
-import com.davidGorraiz.util.UtilEntity;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -16,19 +15,21 @@ public class GenreService implements GenreRepository {
     }
 
     @Override
-    public void findAll() {
+    public List<Genre> findAll() {
         List<Genre> generos = em.createQuery("select g from Genre g", Genre.class).getResultList();
         System.out.println("---- Listar generos ----");
         generos.forEach(System.out::println);
         System.out.println();
+        return generos;
     }
 
     @Override
-    public void findById(int id) {
+    public Genre findById(int id) {
         Genre genre = em.find(Genre.class, id);
         System.out.println("---- Genero encontrado -----");
         System.out.println(genre);
         System.out.println();
+        return genre;
     }
 
     @Override

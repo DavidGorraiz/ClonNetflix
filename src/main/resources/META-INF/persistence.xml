@@ -7,9 +7,7 @@
 
 <persistence-unit name="miUnidadPersistencia" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
     <class>com.davidGorraiz.model.Genre</class>
-
     <!-- Agrega todas tus clases de entidad -->
 
     <properties>

@@ -3,6 +3,8 @@ package com.davidGorraiz.model;
 import com.davidGorraiz.model.User.User;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "profile")
@@ -78,5 +80,18 @@ public class Profile {
                 ", idioma='" + idioma + '\'' +
                 ", userId=" + userId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profile profile = (Profile) o;
+        return id == profile.id && userId == profile.userId && Objects.equals(nombre, profile.nombre) && Objects.equals(idioma, profile.idioma) && Objects.equals(user, profile.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, idioma, userId, user);
     }
 }

@@ -1,6 +1,7 @@
 package com.davidGorraiz.service;
 
 import com.davidGorraiz.model.Profile;
+import com.davidGorraiz.model.User.User;
 import com.davidGorraiz.repository.ProfileRepository;
 import jakarta.persistence.EntityManager;
 
@@ -26,12 +27,18 @@ public class ProfileService implements ProfileRepository {
 
     @Override
     public void findById(int id) {
-
+        Profile profile = em.find(Profile.class, id);
+        System.out.println("---- Usuario encontrado ----");
+        System.out.println(profile);
+        System.out.println();
     }
 
     @Override
-    public void save(Profile profile) {
-
+    public void save(Profile profile, User user) {
+        profile.setUser(user);
+        System.out.println("---- Insertar profile -----");
+        em.persist(profile);
+        System.out.println();
     }
 
     @Override

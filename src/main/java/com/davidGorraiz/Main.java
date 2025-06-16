@@ -142,5 +142,6 @@ public class Main {
         suscriptionService.findAll();
         suscriptionService.findById(1);
         profileService.findAll();
+        profileService.findById(1);
     }
 }
