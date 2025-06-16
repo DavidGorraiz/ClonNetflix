@@ -62,6 +62,12 @@ public class SuscriptionService  implements SuscriptionRepository {
 
     @Override
     public void delete(int id) {
-
+        Suscription suscription = em.find(Suscription.class, id);
+        if (suscription != null) {
+            System.out.println("---- Eliminar suscripcion ----");
+            em.remove(suscription);
+        }else {
+            System.out.println("La suscripcion que se quiere eliminar no existe");
+        }
     }
 }

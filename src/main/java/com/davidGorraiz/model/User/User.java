@@ -1,5 +1,6 @@
 package com.davidGorraiz.model.User;
 
+import com.davidGorraiz.model.Profile;
 import com.davidGorraiz.model.Suscription.Suscription;
 import jakarta.persistence.*;
 
@@ -28,6 +29,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Suscription> suscriptions;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Profile> profiles;
+
     public User() {
     }
 
@@ -37,6 +41,14 @@ public class User {
         this.nombreCompleto = nombreCompleto;
         this.fechaRegistro = fechaRegistro;
         this.rol = rol;
+    }
+
+    public List<Profile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
     }
 
     public void setId(int id) {

@@ -58,6 +58,12 @@ public class ContentService  implements ContentRepository {
 
     @Override
     public void delete(int id) {
-
+        Content content = em.find(Content.class, id);
+        if (content != null) {
+            System.out.println("---- Eliminar contenido ----");
+            em.remove(content);
+        }else{
+            System.out.println("El contenido que quiere eliminar no existe");
+        }
     }
 }

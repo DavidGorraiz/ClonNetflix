@@ -7,10 +7,7 @@ import com.davidGorraiz.model.Suscription.Suscription;
 import com.davidGorraiz.model.Suscription.TipoSuscription;
 import com.davidGorraiz.model.User.Rol;
 import com.davidGorraiz.model.User.User;
-import com.davidGorraiz.service.ContentService;
-import com.davidGorraiz.service.GenreService;
-import com.davidGorraiz.service.SuscriptionService;
-import com.davidGorraiz.service.UserService;
+import com.davidGorraiz.service.*;
 import com.davidGorraiz.util.UtilEntity;
 import jakarta.persistence.EntityManager;
 
@@ -27,11 +24,12 @@ public class Main {
         UserService userService = new UserService(em);
         ContentService contentService = new ContentService(em);
         SuscriptionService suscriptionService = new SuscriptionService(em);
+        ProfileService profileService = new ProfileService(em);
 
         em.getTransaction().begin();
 
         // Operaciones select
-        selectOperations(userService, genreService, contentService, suscriptionService);
+        selectOperations(userService, genreService, contentService, suscriptionService, profileService);
 
         // Operaciones insert
 //        insertOperations(genreService, userService, contentService, suscriptionService);
@@ -40,15 +38,24 @@ public class Main {
 //        updateOperations(genreService, userService, contentService, suscriptionService);
 
         // Operaciones delete
-//        genreService.delete(7);
-//        genreService.findAll();
-
-//        userService.delete(4);
-//        userService.findAll();
-
+//        deleteOperations(genreService, userService, contentService, suscriptionService);
 
         em.getTransaction().commit();
         em.close();
+    }
+
+    private static void deleteOperations(GenreService genreService, UserService userService, ContentService contentService, SuscriptionService suscriptionService) {
+        genreService.delete(7);
+        genreService.findAll();
+
+        userService.delete(4);
+        userService.findAll();
+
+        contentService.delete(3);
+        contentService.findAll();
+
+        suscriptionService.delete(2);
+        suscriptionService.findAll();
     }
 
     private static void updateOperations(GenreService genreService, UserService userService, ContentService contentService, SuscriptionService suscriptionService) {
@@ -123,7 +130,9 @@ public class Main {
         suscriptionService.findAll();
     }
 
-    private static void selectOperations(UserService userService, GenreService genreService, ContentService contentService, SuscriptionService suscriptionService) {
+    private static void selectOperations(UserService userService, GenreService genreService,
+                                         ContentService contentService, SuscriptionService suscriptionService,
+                                         ProfileService profileService) {
         userService.findAll();
         userService.findById(1);
         genreService.findAll();
@@ -132,5 +141,6 @@ public class Main {
         contentService.findById(1);
         suscriptionService.findAll();
         suscriptionService.findById(1);
+        profileService.findAll();
     }
 }
