@@ -15,16 +15,26 @@ public class UserService implements UserRepository {
     }
 
     @Override
-    public void findAll() {
+    public List<User> findAll() {
         List<User> users = em.createQuery("select u from User u", User.class).getResultList();
         System.out.println("---- Listar usuarios ----");
         users.forEach(System.out::println);
         System.out.println();
+        return users;
     }
 
     @Override
     public User findById(int id) {
         User user = em.find(User.class, id);
+        System.out.println("---- Usuario encontrado ----");
+        System.out.println(user);
+        System.out.println();
+        return user;
+    }
+
+    public User findByEmail(String email) {
+        User user = em.createQuery("select u from User u where u.email = :email", User.class)
+                .setParameter("email", email).getSingleResult();
         System.out.println("---- Usuario encontrado ----");
         System.out.println(user);
         System.out.println();

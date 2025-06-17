@@ -26,10 +26,9 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String nombre, String idioma, User user) {
+    public Profile(String nombre, String idioma) {
         this.nombre = nombre;
         this.idioma = idioma;
-        this.user = user;
     }
 
     public int getUserId() {

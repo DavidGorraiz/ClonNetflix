@@ -79,7 +79,7 @@ class GenreTest {
     void update_genre() {
         Genre newGenre = new Genre();
         newGenre.setNombre("SiFi");
-        Genre oldGenre = genreService.findByName("Ciencia Ficción");
+        Genre oldGenre = genreService.findByName("Misterio");
         em.getTransaction().begin();
         genreService.update(oldGenre.getId(), newGenre);
         em.getTransaction().commit();
@@ -92,11 +92,11 @@ class GenreTest {
 
     @Test
     void delete_genre() {
-        Genre genre = genreService.findById(1);
+        Genre genre = genreService.findById(2);
         em.getTransaction().begin();
         genreService.delete(genre.getId());
         em.getTransaction().commit();
-        Genre genreDeleted = genreService.findById(1);
+        Genre genreDeleted = genreService.findById(2);
         assertNull(genreDeleted);
     }
 }
