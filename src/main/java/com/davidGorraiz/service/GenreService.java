@@ -32,6 +32,15 @@ public class GenreService implements GenreRepository {
         return genre;
     }
 
+    public Genre findByName(String name) {
+        Genre genre = em.createQuery("select g from Genre g where g.nombre = :name", Genre.class)
+                .setParameter("name", name).getSingleResult();
+        System.out.println("---- Genero encontrado -----");
+        System.out.println(genre);
+        System.out.println();
+        return genre;
+    }
+
     @Override
     public void save(Genre genre) {
         System.out.println("---- Insertar genero ----");

@@ -1,6 +1,5 @@
 package com.davidGorraiz.model.User;
 
-import com.davidGorraiz.service.GenreService;
 import com.davidGorraiz.service.UserService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
