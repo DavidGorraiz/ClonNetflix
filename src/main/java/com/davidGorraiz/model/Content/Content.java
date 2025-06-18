@@ -1,8 +1,10 @@
 package com.davidGorraiz.model.Content;
 
+import com.davidGorraiz.model.Episode;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "content")
@@ -25,6 +27,9 @@ public class Content {
     @Column(name = "clasificacion")
     private String clasificacion;
 
+    @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
+    private List<Episode> episodes;
+
     public Content() {
     }
 
@@ -35,6 +40,30 @@ public class Content {
         this.fechaLanzamiento = fechaLanzamiento;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public TipoContent getTipoContent() {
+        return tipoContent;
+    }
+
+    public void setTipoContent(TipoContent tipoContent) {
+        this.tipoContent = tipoContent;
+    }
+
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
+    }
+
+    public List<Episode> getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(List<Episode> episodes) {
+        this.episodes = episodes;
     }
 
     public int getId() {

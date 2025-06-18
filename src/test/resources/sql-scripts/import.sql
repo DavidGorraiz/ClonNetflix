@@ -21,3 +21,7 @@ INSERT INTO subscription (tipo, precio, duracion_meses, fecha_inicio, fecha_fin,
 -- Tabla content
 INSERT INTO content (titulo, descripcion, tipo, fecha_lanzamiento, duracion, clasificacion) VALUES ('The Matrix', 'Película de ciencia ficción', 'PELICULA', '1999-03-31', 136, '+16');
 INSERT INTO content (titulo, descripcion, tipo, fecha_lanzamiento, duracion, clasificacion) VALUES ('Stranger Things', 'Serie de misterio y ciencia ficción', 'SERIE', '2016-07-15', NULL, '+13');
+
+-- Insertar episodios
+INSERT INTO episode (titulo, descripcion, numero_episodio, temporada, duracion, content_id) VALUES ('Capítulo 1: Vanishing', 'Primer episodio de Stranger Things', 1, 1, 48, 2);
+INSERT INTO episode (titulo, descripcion, numero_episodio, temporada, duracion, content_id) VALUES ('Capítulo 2: The Weirdo', 'Segundo episodio', 2, 1, 45, 2);

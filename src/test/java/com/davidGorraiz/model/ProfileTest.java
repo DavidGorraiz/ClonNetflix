@@ -80,6 +80,7 @@ class ProfileTest {
         newProfile.setNombre("David - Perfil 1");
         newProfile.setIdioma("Español");
         newProfile.setUser(newUser);
+        newProfile.setUserId(newUser.getId());
 
         Profile oldProfile = profileService.findById(2);
 

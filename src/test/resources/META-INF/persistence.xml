@@ -9,6 +9,7 @@
         <class>com.davidGorraiz.model.Profile</class>
         <class>com.davidGorraiz.model.Suscription.Suscription</class>
         <class>com.davidGorraiz.model.Content.Content</class>
+        <class>com.davidGorraiz.model.Episode</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>

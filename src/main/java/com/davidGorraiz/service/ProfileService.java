@@ -61,6 +61,7 @@ public class ProfileService implements ProfileRepository {
             profile.setNombre(newProfile.getNombre());
             profile.setIdioma(newProfile.getIdioma());
             profile.setUser(newProfile.getUser());
+            profile.setUserId(newProfile.getUserId());
             System.out.println("---- Actualizar profile -----");
             em.merge(profile);
             System.out.println();
