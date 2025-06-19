@@ -50,23 +50,23 @@ class EpisodeTest {
 
     @Test
     void buscar_por_id() {
-        Episode episode = episodeService.findById(1);
+        Episode episode = episodeService.findById(2);
         assertNotNull(episode);
-        assertEquals("Capítulo 1: Vanishing", episode.getTitulo());
+        assertEquals("Capítulo 2: The Weirdo", episode.getTitulo());
     }
 
     @Test
     void buscar_no_por_id() {
         Episode episode = episodeService.findNotById(
-                "Capítulo 1: Vanishing",
-                "Primer episodio de Stranger Things",
+                "Capítulo 2: The Weirdo",
+                "Segundo episodio",
+                2,
                 1,
-                1,
-                48,
+                45,
                 2
         );
         assertNotNull(episode);
-        assertEquals(1, episode.getId());
+        assertEquals(2, episode.getId());
     }
 
     @Test
@@ -118,5 +118,15 @@ class EpisodeTest {
         Episode updated = episodeService.findById(2);
         assertNotNull(updated);
         assertEquals("Capituo 2", updated.getTitulo());
+    }
+
+    @Test
+    void delete_episode() {
+        Episode episode = episodeService.findById(1);
+        em.getTransaction().begin();
+        episodeService.delete(episode.getId());
+        em.getTransaction().commit();
+        Episode deleted = episodeService.findById(1);
+        assertNull(deleted);
     }
 }

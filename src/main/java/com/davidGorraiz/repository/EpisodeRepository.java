@@ -9,5 +9,5 @@ public interface EpisodeRepository {
     public Episode findById(int id);
     public void save(Episode episode);
     public void update(int id,Episode episode);
-    public void delete(Episode episode);
+    public void delete(int id);
 }

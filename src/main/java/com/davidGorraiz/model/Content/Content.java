@@ -1,5 +1,6 @@
 package com.davidGorraiz.model.Content;
 
+import com.davidGorraiz.model.ContentGenre.ContentGenre;
 import com.davidGorraiz.model.Episode;
 import jakarta.persistence.*;
 
@@ -30,6 +31,9 @@ public class Content {
     @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
     private List<Episode> episodes;
 
+    @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
+    private List<ContentGenre> contentGenres;
+
     public Content() {
     }
 
@@ -40,6 +44,14 @@ public class Content {
         this.fechaLanzamiento = fechaLanzamiento;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
+    }
+
+    public List<ContentGenre> getContentGenres() {
+        return contentGenres;
+    }
+
+    public void setContentGenres(List<ContentGenre> contentGenres) {
+        this.contentGenres = contentGenres;
     }
 
     public void setId(int id) {

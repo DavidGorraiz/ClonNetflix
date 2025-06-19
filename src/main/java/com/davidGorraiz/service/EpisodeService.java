@@ -91,7 +91,15 @@ public class EpisodeService implements EpisodeRepository {
     }
 
     @Override
-    public void delete(Episode episode) {
-
+    public void delete(int id) {
+        Episode episode = em.find(Episode.class, id);
+        if (episode != null) {
+            System.out.println("---- Eliminar episodio ----");
+            em.remove(episode);
+            System.out.println(episode);
+            System.out.println();
+        }else {
+            System.out.println("El episode que quiere eliminar no existe");
+        }
     }
 }

@@ -25,3 +25,11 @@ INSERT INTO content (titulo, descripcion, tipo, fecha_lanzamiento, duracion, cla
 -- Insertar episodios
 INSERT INTO episode (titulo, descripcion, numero_episodio, temporada, duracion, content_id) VALUES ('Capítulo 1: Vanishing', 'Primer episodio de Stranger Things', 1, 1, 48, 2);
 INSERT INTO episode (titulo, descripcion, numero_episodio, temporada, duracion, content_id) VALUES ('Capítulo 2: The Weirdo', 'Segundo episodio', 2, 1, 45, 2);
+
+-- Insertar genero de contenido
+
+INSERT INTO content_genre (content_id, genre_id) VALUES (1, 1); -- The Matrix - Ciencia Ficción
+INSERT INTO content_genre (content_id, genre_id) VALUES (1, 2); -- The Matrix - Acción
+INSERT INTO content_genre (content_id, genre_id) VALUES (2, 1); -- Stranger Things - Ciencia Ficción
+INSERT INTO content_genre (content_id, genre_id) VALUES (2, 3); -- Stranger Things - Misterio
+INSERT INTO content_genre (content_id, genre_id) VALUES (2, 4); -- Stranger Things - Terror
