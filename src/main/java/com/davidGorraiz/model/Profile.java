@@ -3,6 +3,7 @@ package com.davidGorraiz.model;
 import com.davidGorraiz.model.User.User;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -23,12 +24,23 @@ public class Profile {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
+    private List<WatchHistory> watchHistories;
+
     public Profile() {
     }
 
     public Profile(String nombre, String idioma) {
         this.nombre = nombre;
         this.idioma = idioma;
+    }
+
+    public List<WatchHistory> getWatchHistories() {
+        return watchHistories;
+    }
+
+    public void setWatchHistories(List<WatchHistory> watchHistories) {
+        this.watchHistories = watchHistories;
     }
 
     public int getUserId() {

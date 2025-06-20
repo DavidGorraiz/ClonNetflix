@@ -2,6 +2,7 @@ package com.davidGorraiz.model.Content;
 
 import com.davidGorraiz.model.ContentGenre.ContentGenre;
 import com.davidGorraiz.model.Episode;
+import com.davidGorraiz.model.WatchHistory;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -34,6 +35,9 @@ public class Content {
     @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
     private List<ContentGenre> contentGenres;
 
+    @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
+    private List<WatchHistory> watchHistories;
+
     public Content() {
     }
 
@@ -44,6 +48,14 @@ public class Content {
         this.fechaLanzamiento = fechaLanzamiento;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
+    }
+
+    public List<WatchHistory> getWatchHistories() {
+        return watchHistories;
+    }
+
+    public void setWatchHistories(List<WatchHistory> watchHistories) {
+        this.watchHistories = watchHistories;
     }
 
     public List<ContentGenre> getContentGenres() {

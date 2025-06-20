@@ -11,6 +11,7 @@
         <class>com.davidGorraiz.model.Content.Content</class>
         <class>com.davidGorraiz.model.Episode</class>
         <class>com.davidGorraiz.model.ContentGenre.ContentGenre</class>
+        <class>com.davidGorraiz.model.WatchHistory</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
