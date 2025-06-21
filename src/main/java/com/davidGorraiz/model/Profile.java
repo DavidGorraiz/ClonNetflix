@@ -27,12 +27,23 @@ public class Profile {
     @OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
     private List<WatchHistory> watchHistories;
 
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
+    private List<Favorite> favorites;
+
     public Profile() {
     }
 
     public Profile(String nombre, String idioma) {
         this.nombre = nombre;
         this.idioma = idioma;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     public List<WatchHistory> getWatchHistories() {

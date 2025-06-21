@@ -2,6 +2,7 @@ package com.davidGorraiz.model.Content;
 
 import com.davidGorraiz.model.ContentGenre.ContentGenre;
 import com.davidGorraiz.model.Episode;
+import com.davidGorraiz.model.Favorite;
 import com.davidGorraiz.model.WatchHistory;
 import jakarta.persistence.*;
 
@@ -38,6 +39,9 @@ public class Content {
     @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
     private List<WatchHistory> watchHistories;
 
+    @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE)
+    private List<Favorite> favorites;
+
     public Content() {
     }
 
@@ -48,6 +52,14 @@ public class Content {
         this.fechaLanzamiento = fechaLanzamiento;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     public List<WatchHistory> getWatchHistories() {

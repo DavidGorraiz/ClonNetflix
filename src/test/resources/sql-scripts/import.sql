@@ -38,3 +38,8 @@ INSERT INTO content_genre (content_id, genre_id) VALUES (2, 4); -- Stranger Thin
 INSERT INTO watch_history (profile_id, content_id, fecha_visto, duracion_vista) VALUES (1, 1, TIMESTAMP '2024-05-01 20:00:00', 120);
 INSERT INTO watch_history (profile_id, content_id, fecha_visto, duracion_vista) VALUES (1, 2, TIMESTAMP '2024-05-02 21:30:00', 45);
 INSERT INTO watch_history (profile_id, content_id, fecha_visto, duracion_vista) VALUES (2, 2, TIMESTAMP '2024-05-03 19:00:00', 48);
+
+-- Insertar Favoritos
+INSERT INTO favorite (profile_id, content_id) VALUES (1, 1);
+INSERT INTO favorite (profile_id, content_id) VALUES (1, 2);
+INSERT INTO favorite (profile_id, content_id) VALUES (3, 2);
