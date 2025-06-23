@@ -43,3 +43,8 @@ INSERT INTO watch_history (profile_id, content_id, fecha_visto, duracion_vista) 
 INSERT INTO favorite (profile_id, content_id) VALUES (1, 1);
 INSERT INTO favorite (profile_id, content_id) VALUES (1, 2);
 INSERT INTO favorite (profile_id, content_id) VALUES (3, 2);
+
+-- Insertar ratings
+INSERT INTO rating (profile_id, content_id, valor, comentario)VALUES (1, 1, 5, '¡Increíble película!');
+INSERT INTO rating (profile_id, content_id, valor, comentario)VALUES (1, 2, 4, 'Buena serie, me gusta el misterio.');
+INSERT INTO rating (profile_id, content_id, valor, comentario)VALUES (3, 2, 5, 'Mi favorita');

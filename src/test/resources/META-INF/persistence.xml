@@ -13,6 +13,7 @@
         <class>com.davidGorraiz.model.ContentGenre.ContentGenre</class>
         <class>com.davidGorraiz.model.WatchHistory</class>
         <class>com.davidGorraiz.model.Favorite</class>
+        <class>com.davidGorraiz.model.Rating</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>

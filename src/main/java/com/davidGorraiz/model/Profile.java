@@ -30,12 +30,23 @@ public class Profile {
     @OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
     private List<Favorite> favorites;
 
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.REMOVE)
+    private List<Rating> ratings;
+
     public Profile() {
     }
 
     public Profile(String nombre, String idioma) {
         this.nombre = nombre;
         this.idioma = idioma;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 
     public List<Favorite> getFavorites() {
