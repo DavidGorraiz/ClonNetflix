@@ -88,7 +88,21 @@ public class ProfileSelectionFrame extends JFrame {
             if (name != null && !name.trim().isEmpty()) {
 
                 UserService userService = new UserService(em);
-                int userId = perfiles.get(0).getUserId();
+                int userId;
+                if (!perfiles.isEmpty()) {
+                    userId = perfiles.get(0).getUserId();
+                } else {
+                    User user = null;
+                    String emailUsuario = "";
+                    do  {
+                        emailUsuario = JOptionPane.showInputDialog(this, "Ingresa tu email:");
+                        user = userService.findByEmail(emailUsuario);
+                        if(emailUsuario == null){
+                            break;
+                        }
+                   }while(user == null || emailUsuario.trim().isEmpty());
+                    userId = user.getId();
+                }
                 User user = userService.findById(userId);
                 Profile profile = new Profile(
                         name,
