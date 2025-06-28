@@ -3,7 +3,6 @@ package com.davidGorraiz.UI;
 import com.davidGorraiz.model.Profile;
 import com.davidGorraiz.model.User.User;
 import com.davidGorraiz.service.ProfileService;
-import com.davidGorraiz.service.UserService;
 import com.davidGorraiz.util.UtilEntity;
 import jakarta.persistence.EntityManager;
 
@@ -14,13 +13,15 @@ import java.util.List;
 public class ProfileSelectionFrame extends JFrame {
 
     private List<Profile> perfiles;
+    private User user;
     private JPanel profilesPanel;
     private Profile selectedProfile;
     private EntityManager em = UtilEntity.getEntityManager();
     private ProfileService profileService = new ProfileService(em);
 
-    public ProfileSelectionFrame(List<Profile> perfiles) {
+    public ProfileSelectionFrame(List<Profile> perfiles, User user) {
         this.perfiles = perfiles;
+        this.user = user;
 
         setTitle("Selecciona un perfil");
         setSize(500, 400);
@@ -47,12 +48,11 @@ public class ProfileSelectionFrame extends JFrame {
         JPanel adminPanel = createAdminPanel();
         mainPanel.add(adminPanel, BorderLayout.SOUTH);
 
+
         add(mainPanel);
     }
 
     private void loadProfiles() {
-        System.out.println("loadProfiles");
-        System.out.println(perfiles);
         profilesPanel.removeAll();
 
         for (Profile perfil : perfiles) {
@@ -63,6 +63,13 @@ public class ProfileSelectionFrame extends JFrame {
                 selectedProfile = perfil;
                 JOptionPane.showMessageDialog(this, "Perfil seleccionado: " + perfil.getNombre());
                 // Aquí puedes abrir el catálogo
+
+                // 👉 Aquí llamas a CatalogFrame pasándole el perfil y tu lista real de títulos
+                CatalogFrame catalog = new CatalogFrame(selectedProfile, perfiles, user);
+                catalog.setVisible(true);
+                dispose(); // Opcional: cierra la ventana actual
+
+
             });
 
             profilesPanel.add(profileButton);
@@ -74,36 +81,18 @@ public class ProfileSelectionFrame extends JFrame {
 
     private JPanel createAdminPanel() {
         JPanel adminPanel = new JPanel(new GridLayout(2, 2, 10, 10));
-        adminPanel.setBorder(BorderFactory.createTitledBorder("Administrar perfiles"));
+        adminPanel.setBorder(BorderFactory.createTitledBorder("Opciones"));
         adminPanel.setPreferredSize(new Dimension(600, 100));
 
         JButton addButton = new JButton("Añadir perfil");
-        JButton deleteButton = new JButton("Eliminar perfil");
-        JButton editButton = new JButton("Editar nombre");
-        JButton markKidButton = new JButton("Marcar como infantil");
+        // Botón para volver al login
+        JButton backToLoginButton = new JButton("← Volver al Login");
+        backToLoginButton.setFont(new Font("Arial", Font.PLAIN, 14));
 
         addButton.addActionListener(e -> {
             String name = JOptionPane.showInputDialog(this, "Nombre del nuevo perfil:");
             String idioma = JOptionPane.showInputDialog(this, "Idioma del nuevo perfil:");
             if (name != null && !name.trim().isEmpty()) {
-
-                UserService userService = new UserService(em);
-                int userId;
-                if (!perfiles.isEmpty()) {
-                    userId = perfiles.get(0).getUserId();
-                } else {
-                    User user = null;
-                    String emailUsuario = "";
-                    do  {
-                        emailUsuario = JOptionPane.showInputDialog(this, "Ingresa tu email:");
-                        user = userService.findByEmail(emailUsuario);
-                        if(emailUsuario == null){
-                            break;
-                        }
-                   }while(user == null || emailUsuario.trim().isEmpty());
-                    userId = user.getId();
-                }
-                User user = userService.findById(userId);
                 Profile profile = new Profile(
                         name,
                         idioma
@@ -120,43 +109,13 @@ public class ProfileSelectionFrame extends JFrame {
             }
         });
 
-        deleteButton.addActionListener(e -> {
-            if (selectedProfile == null) {
-                JOptionPane.showMessageDialog(this, "Selecciona un perfil primero.");
-                return;
-            }
-            int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar perfil: " + selectedProfile.getNombre() + "?", "Confirmar", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, "Aun no implementado");
-                loadProfiles();
-            }
-        });
-
-        editButton.addActionListener(e -> {
-            if (selectedProfile == null) {
-                JOptionPane.showMessageDialog(this, "Selecciona un perfil primero.");
-                return;
-            }
-            String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:", selectedProfile.getNombre());
-            if (nuevoNombre != null && !nuevoNombre.trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Aun no implementado");
-                loadProfiles();
-            }
-        });
-
-        markKidButton.addActionListener(e -> {
-            if (selectedProfile == null) {
-                JOptionPane.showMessageDialog(this, "Selecciona un perfil primero.");
-                return;
-            }
-            JOptionPane.showMessageDialog(this, "Aun no implementado");
+        backToLoginButton.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
+            dispose();
         });
 
         adminPanel.add(addButton);
-        adminPanel.add(deleteButton);
-        adminPanel.add(editButton);
-        adminPanel.add(markKidButton);
-
+        adminPanel.add(backToLoginButton);
         return adminPanel;
     }
 

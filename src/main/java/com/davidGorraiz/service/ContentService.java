@@ -59,6 +59,16 @@ public class ContentService  implements ContentRepository {
         return content;
     }
 
+    public List<Content> findByType(TipoContent tipoContent) {
+        List<Content> contents = findAll().stream()
+                .filter(content -> content.getTipoContent().equals(tipoContent))
+                .toList();
+        System.out.println("---- Listar contenido por tipo ----");
+        contents.forEach(System.out::println);
+        System.out.println();
+        return contents;
+    }
+
     @Override
     public void save(Content content) {
         System.out.println("---- Insertar contenido ----");

@@ -107,7 +107,7 @@ public class LoginFrame extends JFrame {
                 ProfileService profileService = new ProfileService(em);
                 List<Profile> perfiles = profileService.findByUser(actualUser);
 
-                ProfileSelectionFrame selector = new ProfileSelectionFrame(perfiles);
+                ProfileSelectionFrame selector = new ProfileSelectionFrame(perfiles, actualUser);
                 selector.setVisible(true);
                 this.dispose(); // Cierra la ventana de login
             } else {
