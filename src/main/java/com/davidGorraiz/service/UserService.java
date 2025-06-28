@@ -3,6 +3,7 @@ package com.davidGorraiz.service;
 import com.davidGorraiz.model.User.User;
 import com.davidGorraiz.repository.UserRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
@@ -33,12 +34,16 @@ public class UserService implements UserRepository {
     }
 
     public User findByEmail(String email) {
-        User user = em.createQuery("select u from User u where u.email = :email", User.class)
-                .setParameter("email", email).getSingleResult();
-        System.out.println("---- Usuario encontrado ----");
-        System.out.println(user);
-        System.out.println();
-        return user;
+        try {
+            User user = em.createQuery("select u from User u where u.email = :email", User.class)
+                    .setParameter("email", email).getSingleResult();
+            System.out.println("---- Usuario encontrado ----");
+            System.out.println(user);
+            System.out.println();
+            return user;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override

@@ -26,6 +26,16 @@ public class ProfileService implements ProfileRepository {
         return profiles;
     }
 
+    public List<Profile> findByUser(User user) {
+        List<Profile> profiles = findAll().stream()
+                .filter(profile -> profile.getUserId() == user.getId())
+                .toList();
+        System.out.println("---- Perfiles de usuario: " + user.getNombreCompleto() + " ----");
+        profiles.forEach(System.out::println);
+        System.out.println();
+        return profiles;
+    }
+
     @Override
     public Profile findById(int id) {
         Profile profile = em.find(Profile.class, id);
@@ -49,6 +59,7 @@ public class ProfileService implements ProfileRepository {
     @Override
     public void save(Profile profile, User user) {
         profile.setUser(user);
+        profile.setUserId(user.getId());
         System.out.println("---- Insertar profile -----");
         em.persist(profile);
         System.out.println();

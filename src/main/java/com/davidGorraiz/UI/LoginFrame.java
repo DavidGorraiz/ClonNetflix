@@ -1,6 +1,8 @@
 package com.davidGorraiz.UI;
 
+import com.davidGorraiz.model.Profile;
 import com.davidGorraiz.model.User.User;
+import com.davidGorraiz.service.ProfileService;
 import com.davidGorraiz.service.UserService;
 import com.davidGorraiz.util.UtilEntity;
 import jakarta.persistence.EntityManager;
@@ -89,24 +91,33 @@ public class LoginFrame extends JFrame {
             List<User> users = userService.findAll();
 
             boolean checkUser = false;
+            User actualUser = null;
 
             for (User user : users) {
                 if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
                     checkUser = true;
+                    actualUser = user;
                 }
             }
 
             if (checkUser) {
                 JOptionPane.showMessageDialog(this, "¡Inicio de sesión exitoso!");
                 // Ir a selección de perfil
+
+                ProfileService profileService = new ProfileService(em);
+                List<Profile> perfiles = profileService.findByUser(actualUser);
+
+                ProfileSelectionFrame selector = new ProfileSelectionFrame(perfiles);
+                selector.setVisible(true);
+                this.dispose(); // Cierra la ventana de login
             } else {
                 JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
             }
         });
 
         registerButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Lógica para registro aún no implementada.");
-            // Aquí podrías abrir una nueva ventana de registro
+            RegisterFrame registerFrame = new RegisterFrame();
+            registerFrame.setVisible(true);
         });
 
         forgotPasswordButton.addActionListener(e -> {
