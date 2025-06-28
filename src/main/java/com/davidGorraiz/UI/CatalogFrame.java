@@ -51,9 +51,30 @@ public class CatalogFrame extends JFrame {
             dispose();
         });
 
+        // Crear los nuevos botones
+        JButton buscarPorNombreButton = new JButton("Buscar por nombre");
+        JButton buscarPorGeneroButton = new JButton("Buscar por género");
+
+        // Agregar acciones a los botones (puedes personalizarlas luego)
+        buscarPorNombreButton.addActionListener(e -> {
+            // Acción para buscar por nombre
+            JOptionPane.showMessageDialog(null, "Buscar por nombre no implementado aún");
+        });
+
+        buscarPorGeneroButton.addActionListener(e -> {
+            // Acción para buscar por género
+            JOptionPane.showMessageDialog(null, "Buscar por género no implementado aún");
+        });
+
+        // Panel derecho con los tres botones
+        JPanel rightButtonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
+        rightButtonsPanel.add(buscarPorNombreButton);
+        rightButtonsPanel.add(buscarPorGeneroButton);
+        rightButtonsPanel.add(logoutButton);
+
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(profileLabel, BorderLayout.WEST);
-        topPanel.add(logoutButton, BorderLayout.EAST);
+        topPanel.add(rightButtonsPanel, BorderLayout.EAST);
         mainPanel.add(topPanel, BorderLayout.NORTH);
 
         JPanel adminPanel = createAdminPanel();
