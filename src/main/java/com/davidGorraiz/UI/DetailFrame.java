@@ -57,7 +57,7 @@ public class DetailFrame extends JFrame {
         double rate = ratingService.averageRate(titulo.getId());
 
         JLabel durationLabel = new JLabel(
-                titulo.getTipoContent().equals(TipoContent.PELICULA) ? "Duración: " + titulo.getDuracion() + " min" : rate + " rate"
+                titulo.getTipoContent().equals(TipoContent.PELICULA) ? "<html>Duración: " + titulo.getDuracion() + " min<br>Rate: " + rate + " ☆</html>" : "Rate: " + rate + " ☆"
         );
 
         JTextArea descriptionArea = new JTextArea(titulo.getDescripcion());
