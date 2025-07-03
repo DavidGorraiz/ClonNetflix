@@ -19,6 +19,7 @@ class RatingTest {
     private static EntityManagerFactory emf;
     private EntityManager em;
     private RatingService ratingService;
+    private ContentService contentService;
 
     @BeforeAll
     static void init() {
@@ -29,6 +30,7 @@ class RatingTest {
     void setUp() {
         em = emf.createEntityManager();
         ratingService = new RatingService(em);
+        contentService = new ContentService(em);
     }
 
     @AfterEach
@@ -54,6 +56,14 @@ class RatingTest {
         Rating rating = ratingService.findById(1);
         assertNotNull(rating);
         assertEquals("¡Increíble película!", rating.getComentario());
+    }
+
+    @Test
+    void promedio_rate() {
+        Content content = contentService.findById(2);
+        double avg = ratingService.averageRate(content.getId());
+        assertNotNull(avg);
+        assertEquals(4.5, avg);
     }
 
     @Test

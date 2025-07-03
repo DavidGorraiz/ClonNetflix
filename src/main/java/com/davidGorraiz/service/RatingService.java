@@ -5,6 +5,7 @@ import com.davidGorraiz.model.Profile;
 import com.davidGorraiz.model.Rating;
 import com.davidGorraiz.repository.RatingRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 import java.util.Comparator;
 import java.util.List;
@@ -40,6 +41,23 @@ public class RatingService implements RatingRepository {
             System.out.println("El rating que se busca no existe");
             return null;
         }
+    }
+
+    public Double averageRate(int contentId){
+        Query query = em.createNativeQuery("select avg(valor) as rate from rating\n" +
+                "where content_id = ?");
+        query.setParameter(1, contentId);
+
+        Object result = query.getSingleResult();
+
+        if (result == null) return null;
+
+        System.out.println("---- Rate ----");
+        System.out.println(result);
+        System.out.println();
+
+        return ((Number) result).doubleValue(); // 🔒 Seguro con Double, BigDecimal, etc.
+        
     }
 
     public Rating findNotById(int valor, String comentario, Profile profile, Content content){

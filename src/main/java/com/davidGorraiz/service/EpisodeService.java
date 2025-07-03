@@ -41,6 +41,16 @@ public class EpisodeService implements EpisodeRepository {
         }
     }
 
+    public List<Episode> findByContentId(int contentId) {
+        List<Episode> episodes = findAll().stream()
+                .filter(episode -> episode.getContentId() == contentId)
+                .toList();
+        System.out.println("---- Episodios encontrados ----");
+        episodes.forEach(System.out::println);
+        System.out.println();
+        return episodes;
+    }
+
     public Episode findNotById(String titulo, String descripcion, int numeroEpisodio, int temporada, int duracion, int contentId) {
         List<Episode> episodes = em.createQuery(
                 "select e from Episode e",

@@ -9,7 +9,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,6 +55,19 @@ class EpisodeTest {
         Episode episode = episodeService.findById(2);
         assertNotNull(episode);
         assertEquals("Capítulo 2: The Weirdo", episode.getTitulo());
+    }
+
+    @Test
+    void buscar_por_content() {
+        List<Episode> episodes = episodeService.findByContentId(2);
+        Set<Integer> temporadas = new HashSet<>();
+        for (int i = 0; i < episodes.size(); i++) {
+            Episode episode = episodes.get(i);
+            temporadas.add(episode.getTemporada());
+        }
+        System.out.println(temporadas.toString());
+        assertNotNull(episodes);
+        assertEquals(2, episodes.size());
     }
 
     @Test

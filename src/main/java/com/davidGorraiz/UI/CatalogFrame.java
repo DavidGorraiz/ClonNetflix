@@ -52,24 +52,24 @@ public class CatalogFrame extends JFrame {
         });
 
         // Crear los nuevos botones
-        JButton buscarPorNombreButton = new JButton("Buscar por nombre");
-        JButton buscarPorGeneroButton = new JButton("Buscar por género");
+        JButton buscarPorNombreButton = new JButton("Buscar");
+        JButton favoritosButton = new JButton("Favoritos");
 
         // Agregar acciones a los botones (puedes personalizarlas luego)
         buscarPorNombreButton.addActionListener(e -> {
             // Acción para buscar por nombre
-            JOptionPane.showMessageDialog(null, "Buscar por nombre no implementado aún");
+            JOptionPane.showMessageDialog(this, "Buscar por nombre no implementado aún");
         });
 
-        buscarPorGeneroButton.addActionListener(e -> {
+        favoritosButton.addActionListener(e -> {
             // Acción para buscar por género
-            JOptionPane.showMessageDialog(null, "Buscar por género no implementado aún");
+            JOptionPane.showMessageDialog(this, "Favoritos aun no implementadop");
         });
 
         // Panel derecho con los tres botones
         JPanel rightButtonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         rightButtonsPanel.add(buscarPorNombreButton);
-        rightButtonsPanel.add(buscarPorGeneroButton);
+        rightButtonsPanel.add(favoritosButton);
         rightButtonsPanel.add(logoutButton);
 
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -105,7 +105,9 @@ public class CatalogFrame extends JFrame {
         for (Content item : items) {
             JButton btn = new JButton("<html><center>" + item.getTitulo() + "<br/>" + item.getClasificacion() + "</center></html>");
             btn.setPreferredSize(new Dimension(140, 80));
-            btn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Mostrando detalles de: " + item.getTitulo()));
+            btn.addActionListener(e -> {
+                new DetailFrame(item).setVisible(true);
+            });
             fila.add(btn);
         }
 
